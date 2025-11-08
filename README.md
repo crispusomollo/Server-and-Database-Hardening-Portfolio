@@ -31,8 +31,8 @@ This repository demonstrates **comprehensive hardening strategies** for servers,
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/<your-username>/server-db-hardening-portfolio.git
-cd server-db-hardening-portfolio
+git clone https://github.com/crispusomollo/Server-and-Database-Hardening-Portfolio.git
+cd Server-and-Database-Hardening-Portfolio
 ```
 
 2. Run any hardening script, for example:
