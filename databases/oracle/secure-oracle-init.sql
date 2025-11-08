@@ -1,0 +1,10 @@
+-- Lock unused built-in accounts
+ALTER USER ANONYMOUS ACCOUNT LOCK;
+ALTER USER CTXSYS ACCOUNT LOCK;
+ALTER USER XDB ACCOUNT LOCK;
+
+-- Create limited user
+CREATE USER app_user IDENTIFIED BY "StrongPassword123!";
+GRANT CREATE SESSION TO app_user;
+GRANT SELECT, INSERT ON app_data TO app_user;
+
