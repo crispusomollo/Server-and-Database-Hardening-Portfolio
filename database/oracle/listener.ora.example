@@ -1,0 +1,11 @@
+# Example listener.ora with security in mind
+
+LISTENER =
+  (DESCRIPTION_LIST =
+    (DESCRIPTION =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
+    )
+  )
+
+ADMIN_RESTRICTIONS_LISTENER = ON
+

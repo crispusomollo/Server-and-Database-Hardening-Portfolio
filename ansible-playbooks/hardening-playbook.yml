@@ -1,0 +1,141 @@
+---
+- name: Server and Database Hardening
+  hosts: all
+  become: true
+
+  vars:
+    ssh_port: 2222
+    postgres_db: yourdb
+    postgres_user: app_user
+    mysql_db: your_mysql_db
+    mysql_user: app_user
+    oracle_user: oracle_app_user
+
+  tasks:
+
+  - name: Harden SSH
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: "{{ item.regexp }}"
+      line: "{{ item.line }}"
+      state: present
+    loop:
+      - { regexp: '^#?Port', line: "Port {{ ssh_port }}" }
+      - { regexp: '^#?PermitRootLogin', line: 'PermitRootLogin no' }
+      - { regexp: '^#?PasswordAuthentication', line: 'PasswordAuthentication no' }
+    notify: restart ssh
+
+  - name: Setup UFW Firewall
+    apt:
+      name: ufw
+      state: present
+    become: true
+
+  - name: Configure UFW rules
+    ufw:
+      rule: allow
+      port: "{{ item }}"
+      proto: tcp
+    loop:
+      - "{{ ssh_port }}"
+      - 80
+      - 443
+
+  - name: Enable UFW
+    ufw:
+      state: enabled
+
+  - name: Install Fail2Ban
+    apt:
+      name: fail2ban
+      state: present
+
+  - name: Setup Fail2Ban for SSH
+    copy:
+      dest: /etc/fail2ban/jail.local
+      content: |
+        [sshd]
+        enabled = true
+        port = {{ ssh_port }}
+        logpath = /var/log/auth.log
+        bantime = 600
+        findtime = 600
+        maxretry = 5
+    notify: restart fail2ban
+
+  - name: PostgreSQL - Set listen_addresses to localhost
+    lineinfile:
+      path: /etc/postgresql/14/main/postgresql.conf
+      regexp: '^#?listen_addresses ='
+      line: "listen_addresses = 'localhost'"
+    notify: restart postgresql
+
+  - name: PostgreSQL - Configure pg_hba.conf for scram-sha-256
+    blockinfile:
+      path: /etc/postgresql/14/main/pg_hba.conf
+      block: |
+        host    all             all             127.0.0.1/32            scram-sha-256
+        host    all             all             ::1/128                 scram-sha-256
+    notify: restart postgresql
+
+  - name: PostgreSQL - Create limited user
+    become_user: postgres
+    postgresql_user:
+      name: "{{ postgres_user }}"
+      password: "StrongPassword123!"
+      role_attr_flags: LOGIN
+      db: "{{ postgres_db }}"
+
+  - name: PostgreSQL - Grant privileges
+    become_user: postgres
+    postgresql_privs:
+      db: "{{ postgres_db }}"
+      roles: "{{ postgres_user }}"
+      objs: ALL_IN_SCHEMA
+      type: table
+      privs: SELECT,INSERT,UPDATE
+      schema: public
+
+  - name: MySQL - Install
+    apt:
+      name: mysql-server
+      state: present
+
+  - name: MySQL - Bind to localhost
+    lineinfile:
+      path: /etc/mysql/mysql.conf.d/mysqld.cnf
+      regexp: '^bind-address'
+      line: 'bind-address = 127.0.0.1'
+    notify: restart mysql
+
+  - name: MySQL - Create limited user
+    mysql_user:
+      name: "{{ mysql_user }}"
+      password: "StrongPassword123!"
+      priv: "{{ mysql_db }}.*:SELECT,INSERT,UPDATE"
+      host: localhost
+      state: present
+
+  # Oracle automation requires Oracle client/tools + more setup, so skip for now
+
+  handlers:
+    - name: restart ssh
+      service:
+        name: sshd
+        state: restarted
+
+    - name: restart fail2ban
+      service:
+        name: fail2ban
+        state: restarted
+
+    - name: restart postgresql
+      service:
+        name: postgresql
+        state: restarted
+
+    - name: restart mysql
+      service:
+        name: mysql
+        state: restarted
+
