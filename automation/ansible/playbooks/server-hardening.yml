@@ -1,0 +1,17 @@
+---
+- hosts: servers
+  become: yes
+  tasks:
+    - name: Update system packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+    - name: Install fail2ban
+      apt:
+        name: fail2ban
+        state: present
+    - name: Ensure UFW is enabled
+      ufw:
+        state: enabled
+        default: deny
+
