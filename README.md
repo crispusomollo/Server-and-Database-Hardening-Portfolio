@@ -1,132 +1,69 @@
 # Server & Database Hardening Portfolio
 
-[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/<your-username>/server-db-hardening-portfolio/main/assets/banner.png" alt="Hardening Portfolio" width="800"/>
+</p>
+
+[![Build Status](https://img.shields.io/github/actions/workflow/status/crispusomollo/server-and-db-hardening-portfolio/main.yml?branch=main&label=CI&style=flat-square)](https://github.com/crispusomollo/server-db-hardening-portfolio/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
+[![Verified Scripts](https://img.shields.io/badge/Verification-Passed-green?style=flat-square)](6-testing-verification/scripts/verify-all-hardening.sh)
+[![Python Version](https://img.shields.io/badge/Python-3.11-blue?style=flat-square)](https://www.python.org/)
+[![Docker](https://img.shields.io/badge/Docker-Supported-blue?style=flat-square)](https://www.docker.com/)
 [![Ansible](https://img.shields.io/badge/automation-Ansible-blue.svg)](#ansible-automation)
-[![Docker](https://img.shields.io/badge/container-Docker-blue.svg)](#docker-containers)
 
-This project showcases practical server and database hardening techniques, scripts, and automation.
-
----
-
-## Table of Contents
-
-- [Project Overview](#project-overview)
-- [Folder Structure](#folder-structure)
-- [Server Hardening](#server-hardening)
-- [Database Hardening](#database-hardening)
-  - [PostgreSQL](#postgresql)
-  - [MySQL](#mysql)
-  - [Oracle](#oracle)
-- [Automation with Ansible](#automation-with-ansible)
-- [Docker Containers for Dev/Test](#docker-containers-for-devtest)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+This repository demonstrates **comprehensive hardening strategies** for servers, web servers, databases, and Docker environments, with automation and verification scripts included.
 
 ---
 
-## Project Overview
+## Modules
 
-This portfolio demonstrates security best practices applied to:
-
-- Server: SSH hardening, firewall (UFW), Fail2Ban, Nginx
-- Databases: PostgreSQL, MySQL, Oracle
-- Backup scripts for databases
-- Automation using Ansible
-- Development/testing environment with Docker containers
-
----
-
-## Folder Structure
-```
-server-db-hardening-portfolio/
-├── README.md
-├── LICENSE
-├── .gitignore
-├── server/
-├── database/
-│ ├── backups-cron.sh
-│ ├── postgres/
-│ ├── mysql/
-│ └── oracle/
-├── ansible-playbooks/
-└── docker/
-```
+1. **Server Hardening** – Ubuntu 22.04 LTS configuration, SSH, firewall, fail2ban, automatic updates.  
+2. **Web Server Hardening** – Nginx/Apache security headers, TLS enforcement, HTTP method restrictions.  
+3. **Database Hardening** – PostgreSQL, MySQL, MongoDB, Oracle, SQL Server hardening scripts.  
+4. **Docker Hardening** – Restrict privileges, TLS, clean unused containers/images.  
+5. **Automation** – Ansible playbooks for repeatable hardening tasks.  
+6. **Testing & Verification** – Scripts to verify hardening, logging, and alerting.
 
 ---
 
-## Server Hardening
-
-Scripts for:
-
-- SSH config (`secure-ssh.sh`)
-- UFW firewall setup (`ufw-setup.sh`)
-- Fail2Ban (`fail2ban-setup.sh`)
-- Nginx hardening notes
-
----
-
-## Database Hardening
-
-### PostgreSQL
-
-- Authentication & access controls
-- Password policies
-- Logging
-- Backup scripts
-
-### MySQL
-
-- Running `mysql_secure_installation`
-- User management
-- Bind address restriction
-- Password policies
-- Backup scripts
-
-### Oracle
-
-- Locking default accounts
-- Password profiles
-- Auditing settings
-- Listener restrictions
-
----
-
-## Automation with Ansible
-
-Ansible playbook included to automate server and database hardening.
-
-See `ansible-playbooks/hardening-playbook.yml`.
-
----
-
-## Docker Containers for Dev/Test
-
-Docker Compose setups for PostgreSQL, MySQL, and Oracle XE are included to help replicate the environment quickly.
-
----
-
-## Usage
+## Getting Started
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/server-db-hardening-portfolio.git
+git clone https://github.com/<your-username>/server-db-hardening-portfolio.git
 cd server-db-hardening-portfolio
 ```
-2. Run server hardening scripts or use Ansible playbook for automation.
 
-3. Use the backup scripts with cron for daily backups.
+2. Run any hardening script, for example:
 
-4. Start Docker containers for development and testing.
+```
+bash server-hardening/scripts/ubuntu-harden.sh
+```
+
+3. Run verification scripts:
+
+```
+bash testing-verification/scripts/verify-all-hardening.sh
+```
+
+## Tech Stack
+
+OS: Ubuntu 22.04 LTS
+
+Web Server: Nginx / Apache
+
+Databases: PostgreSQL, MySQL, MongoDB, Oracle, SQL Server
+
+Scripting: Bash, Python, Ansible
+
+Docker (optional)
 
 ## Contributing
-Contributions, issues, and feature requests are welcome!
 
-Please open an issue or submit a pull request.
+Feel free to fork, submit PRs, or suggest improvements.
+Please follow best practices for security and do not commit sensitive credentials.
 
 ## License
-This project is licensed under the MIT License.
 
-
-
+This project is licensed under the MIT License – see LICENSE for details.
