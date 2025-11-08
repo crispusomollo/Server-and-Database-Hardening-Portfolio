@@ -28,3 +28,26 @@ echo "     SELECT * FROM dba_stmt_audit_opts;"
 echo "4. Listener configuration (manual check):"
 echo "   Inspect listener.ora for host restrictions and password/OS authentication."
 
+# ======================
+# SQL Server Verification
+# ======================
+echo -e "\n--- SQL Server Verification ---"
+
+SA_PASSWORD="StrongPassword123!"
+
+echo "1. Checking SA password enforcement:"
+echo "   Attempt login with:"
+echo "     sqlcmd -S localhost -U sa -P '$SA_PASSWORD'"
+
+echo "2. Password policy and expiration enforcement:"
+echo "   Run in sqlcmd:"
+echo "     SELECT name, is_policy_checked, is_expiration_checked FROM sys.sql_logins WHERE name='sa';"
+
+echo "3. Default accounts (manual check):"
+echo "   Review and disable unused logins such as 'guest'."
+
+echo "4. Auditing enabled (manual check):"
+echo "   Review SQL Server Audit objects and logs."
+
+echo -e "\nVerification complete. Automated checks done. Manual steps require DB admin review."
+
