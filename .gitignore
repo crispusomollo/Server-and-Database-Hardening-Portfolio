@@ -1,20 +1,28 @@
-# Ignore passwords and secrets
-*.env
-*.pem
-*.key
+# Python
+*.pyc
+__pycache__/
 
-# Ignore OS files
+# Logs
+*.log
+
+# Environment files
+.env
+
+# Backup files
+*.bak
+
+# OS generated files
 .DS_Store
 Thumbs.db
 
-# Ignore editor folders
-.vscode/
-.idea/
+# MySQL and PostgreSQL dump files
+*.sql
+*.dump
 
-# Ignore backup files
-*.bak
-*.backup
+# MongoDB dump files
+*.bson
+*.json
 
-# Ignore log files
-*.log
+# Docker
+docker-compose.override.yml
 
