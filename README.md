@@ -1,10 +1,10 @@
 # Server & Database Hardening Portfolio
 
 <p align="center">
-  <img width="1281" height="716" alt="image" src="https://github.com/user-attachments/assets/646353da-d3fd-4f5b-b402-aeb53821453a" alt="Hardening Portfolio" width="800"/>
+  <img width="1281" height="716" alt="image" src="https://github.com/user-attachments/assets/646353da-d3fd-4f5b-b402-aeb53821453a" alt="Hardening Portfolio" />
 </p>
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/crispusomollo/server-and-db-hardening-portfolio/main.yml?branch=main&label=CI&style=flat-square)](https://github.com/crispusomollo/server-db-hardening-portfolio/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/crispusomollo/server-and-db-hardening-portfolio/verify-hardening.yml?branch=main&label=CI&style=flat-square)](https://github.com/crispusomollo/server-db-hardening-portfolio/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Verified Scripts](https://img.shields.io/badge/Verification-Passed-green?style=flat-square)](6-testing-verification/scripts/verify-all-hardening.sh)
 [![Python Version](https://img.shields.io/badge/Python-3.11-blue?style=flat-square)](https://www.python.org/)
