@@ -1,7 +1,7 @@
 # Server & Database Hardening Portfolio
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/<your-username>/server-db-hardening-portfolio/main/assets/banner.png" alt="Hardening Portfolio" width="800"/>
+  <img width="1281" height="716" alt="image" src="https://github.com/user-attachments/assets/646353da-d3fd-4f5b-b402-aeb53821453a" alt="Hardening Portfolio" width="800"/>
 </p>
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/crispusomollo/server-and-db-hardening-portfolio/main.yml?branch=main&label=CI&style=flat-square)](https://github.com/crispusomollo/server-db-hardening-portfolio/actions)
