@@ -6,7 +6,7 @@ Automated checks + logging/alerting to detect regressions or misconfigurations.
 
 ### Verification strategy
 
-Unit checks — verify each change:
+**Unit checks** — verify each change:
 
 - SSH config
 
