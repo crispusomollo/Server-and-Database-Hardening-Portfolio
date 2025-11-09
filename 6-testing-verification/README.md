@@ -20,9 +20,9 @@ Unit checks — verify each change:
 
 - Docker daemon config
 
-Integration — run verify-all-hardening.sh to get a summary
+**Integration** — run verify-all-hardening.sh to get a summary
 
-CI / GitHub Actions — run verification on PRs and pushes
+**CI / GitHub Actions** — run verification on PRs and pushes
 
 
 ### Logging & alerting:
@@ -56,11 +56,11 @@ verify SSL/settings are enabled
 
 **Example logging/alerting entries**
 
-Syslog — forward /var/log/auth.log to central collector
+*Syslog* — forward /var/log/auth.log to central collector
 
-Fail2Ban — configure action = %(action_mwl)s to send emails with logs
+*Fail2Ban* — configure action = %(action_mwl)s to send emails with logs
 
-Prometheus node_exporter + blackbox_exporter for service availability; alert when service goes down
+*Prometheus node_exporter + blackbox_exporter* for service availability; alert when service goes down
 
 
 ### Final audit checklist (quick)
@@ -85,19 +85,19 @@ Prometheus node_exporter + blackbox_exporter for service availability; alert whe
 
  Logging/Alerting: central logs + alert rules for critical events
 
-Useful commands & references (quick)
+### Useful commands & references (quick)
 
 Run master verification:
-
+```
 bash 6-testing-verification/scripts/verify-all-hardening.sh
+```
 
-
-Linting & testing:
+**Linting & testing:**
 
 Use shellcheck on bash scripts
 
 Use ansible-lint for playbooks
 
-Secrets:
+**Secrets:**
 
-Use Ansible Vault or environment secrets in CI (never commit plaintext passwords)
+Use *Ansible Vault* or environment secrets in CI (never commit plaintext passwords)
