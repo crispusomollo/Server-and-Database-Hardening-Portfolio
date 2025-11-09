@@ -83,7 +83,15 @@ verify SSL/settings are enabled
 
  [ ] CI: verification workflow in place
 
- [ ] Logging/Alerting: central logs + alert rules for critical events
+- [ ] Logging/Alerting: central logs + alert rules for critical events
+
+
+- [ ] User authentication
+- [ ] Database setup
+- [ ] API endpoints
+- [x] README.md file
+- [ ] Unit tests
+
 
 ### Useful commands & references (quick)
 
