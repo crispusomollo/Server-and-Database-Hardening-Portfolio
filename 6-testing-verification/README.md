@@ -65,32 +65,16 @@ verify SSL/settings are enabled
 
 ### Final audit checklist (quick)
 
- [ ] SSH root login disabled
-
- [ ] SSH password auth disabled
-
- [ ] UFW active & minimal open ports
-
- [ ] Fail2Ban installed & active
-
- [ ] Web server: TLS, headers, methods restricted
-
- [ ] DB: no anonymous/test users, strong auth, limited bind address
-
- [ ] Docker: userns, no privileged containers, daemon secured
-
- [ ] Automation: playbooks idempotent and stored in repo
-
- [ ] CI: verification workflow in place
-
+- [ ] SSH root login disabled
+- [ ] SSH password auth disabled
+- [ ] UFW active & minimal open ports
+- [ ] Fail2Ban installed & active
+- [ ] Web server: TLS, headers, methods restricted
+- [ ] DB: no anonymous/test users, strong auth, limited bind address
+- [ ] Docker: userns, no privileged containers, daemon secured
+- [ ] Automation: playbooks idempotent and stored in repo
+- [ ] CI: verification workflow in place
 - [ ] Logging/Alerting: central logs + alert rules for critical events
-
-
-- [ ] User authentication
-- [ ] Database setup
-- [ ] API endpoints
-- [x] README.md file
-- [ ] Unit tests
 
 
 ### Useful commands & references (quick)
