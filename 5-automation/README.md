@@ -52,29 +52,22 @@ ansible-vault create group_vars/all/vault.yml
 Each playbook should:
 
 - Update apt caches
-
 - Install required packages (fail2ban, ufw, etc.)
-
 - Drop/disable unwanted services
-
 - Deploy config templates with template: or copy:
-
 - Restart/reload services
 
 
 ### Safety & rollbacks
 
-Add --check dry-run when testing
-
-Use tags to target specific tasks (e.g., --tags ssh)
-
-Keep host snapshots or backups before mass changes
+- Add --check dry-run when testing
+- Use tags to target specific tasks (e.g., --tags ssh)
+- Keep host snapshots or backups before mass changes
 
 ### Testing automation
 
-Run playbooks on staging first
-
-Use Molecule + Docker for unit-testing playbooks (advanced)
+- Run playbooks on staging first
+- Use Molecule + Docker for unit-testing playbooks (advanced)
 
 
 **Notes**
