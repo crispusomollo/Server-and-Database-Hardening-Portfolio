@@ -16,3 +16,4 @@ sudo a2enconf security-headers
 sudo systemctl reload apache2
 echo "Apache hardening complete."
 
+
