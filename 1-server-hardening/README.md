@@ -1,21 +1,21 @@
-# Server Hardening — Ubuntu 22.04 LTS
+## Server Hardening — Ubuntu 22.04 LTS
 **Path:** `1-server-hardening/docs/server-hardening.md`
 
-## Overview
+**Overview**
 This document describes recommended server hardening practices for **Ubuntu 22.04 LTS**. It covers package updates, service minimization, SSH hardening, firewall setup with `ufw`, automatic security updates, file system permissions, and intrusion prevention with `fail2ban`.
 
-## Goals
+**Goals**
 - Minimize attack surface
 - Enforce secure remote access (SSH)
 - Harden system update & patching process
 - Provide repeatable commands and verification steps
 
-## Prerequisites
+**Prerequisites**
 - Ubuntu 22.04 server with a non-root user that has `sudo` access
 - Basic familiarity with `systemd`, `ufw`, and `apt`
 - Backups / snapshot before applying changes
 
-## Quick checklist (commands)
+**Quick checklist (commands)**
 ```bash
 # Update system
 sudo apt update && sudo apt upgrade -y
@@ -36,7 +36,7 @@ sudo systemctl enable --now fail2ban
 sudo dpkg-reconfigure --priority=low unattended-upgrades
 ```
 
-**SSH Hardening (recommended /etc/ssh/sshd_config changes)**
+### SSH Hardening (recommended /etc/ssh/sshd_config changes)
 
 - Disable root login (PermitRootLogin no)
 
@@ -64,7 +64,7 @@ sudo systemctl reload sshd
 
 **Note:** Before disabling password auth, confirm your SSH key login works.
 
-**Firewall (UFW) guidance**
+### Firewall (UFW) guidance
 
 - Default deny incoming, default allow outgoing
 - Allow SSH and any service ports you need (Nginx: 80/443)
@@ -78,16 +78,16 @@ sudo ufw allow 443/tcp
 sudo ufw enable
 ```
 
-**System Updates and Patching**
+### System Updates and Patching
 
 - Configure unattended-upgrades for security updates
 - Keep kernel and packages patched, schedule maintenance for kernel upgrades
 
-**Fail2Ban**
+### Fail2Ban
 
 Install and create /etc/fail2ban/jail.local to protect SSH and web services
 
-Example snippet:
+**Example snippet:**
 
 ```ini
 [sshd]
@@ -105,19 +105,19 @@ Then restart:
 sudo systemctl restart fail2ban
 ```
 
-**File system & permissions**
+### File system & permissions
 
 - Ensure /etc/ssh/sshd_config is root-owned and not writable by others
 - Minimize use of world-writable directories; review SUID/SGID files
 - Use auditd for high-sensitivity hosts if required
 
-**Logging & Monitoring**
+### Logging & Monitoring
 
 - Centralize logs (syslog/rsyslog, or remote ELK/Graylog)
 - Monitor auth logs for brute force attempts
 - Configure retention and secure log archive
 
-## Verification
+### Verification
 Run these checks after hardening:
 
 ```bash
@@ -135,14 +135,14 @@ sudo fail2ban-client status sshd
 sudo unattended-upgrades --dry-run
 ```
 
-## Rollback strategy
+### Rollback strategy
 
 - Keep a snapshot/backup before mass changes
 - Keep alternate access (console or cloud provider SSH session) in case of lockout
 
-## References & further reading
+
+**References & further reading**
 
 - Ubuntu Server Guide (official)
 - CIS Benchmarks (Ubuntu 22.04)
-
-fail2ban docs
+- fail2ban docs
